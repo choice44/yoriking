@@ -10,9 +10,10 @@ dotenv.read_dotenv((os.path.join(BASE_DIR, ".env")))
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["becchol.com", "127.0.0.1",]
+ALLOWED_HOSTS = ['3.38.211.113', 'api.bechol.com', '127.0.0.1',]
+
 
 
 INSTALLED_APPS = [
