@@ -8,6 +8,7 @@ from articles.models import Article, Comment
 from articles.serializers import (
     ArticleSerializer,
     ArticleDetailSerializer,
+    ArticleUpdateSerializer,
     CommentSerializer,
     CommentCreateSerializer,
 )
@@ -67,7 +68,7 @@ class ArticleDetailView(APIView):
 
     def put(self, request, article_id):
         article = get_object_or_404(Article, id=article_id)
-        serializer = ArticleSerializer(article, data=request.data)
+        serializer = ArticleUpdateSerializer(article, data=request.data)
         if article.user == request.user:
             if serializer.is_valid():
                 serializer.save(user=request.user)
