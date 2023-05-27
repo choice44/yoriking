@@ -38,7 +38,7 @@ class UserPageTest(APITestCase):
     # 본인 페이지 출력 테스트 
     def test_get_user_data(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 1
+        user_id = self.user.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.get(
             path=url,
@@ -52,7 +52,7 @@ class UserPageTest(APITestCase):
     # 타인 페이지 출력 테스트
     def test_get_other_user_data(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 2
+        user_id = self.user2.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.get(
             path=url,
@@ -80,7 +80,7 @@ class UserPageEditTest(APITestCase):
     # 본인 유저 페이지 수정
     def test_edit_user(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 1
+        user_id = self.user.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.put(
             path=url,
@@ -98,7 +98,7 @@ class UserPageEditTest(APITestCase):
     # 타인 유저 페이지 수정
     def test_edit_other_user(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 2
+        user_id = self.user2.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.put(
             path=url,
@@ -117,7 +117,7 @@ class UserPageEditTest(APITestCase):
     # 타인 유저 탈퇴
     def test_delete_other_user(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 2
+        user_id = self.user2.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.delete(
             path=url,
@@ -130,7 +130,7 @@ class UserPageEditTest(APITestCase):
     # 본인 계정 탈퇴 
     def test_delete_user(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 1
+        user_id = self.user.id
         url = reverse("user_view", kwargs={"user_id": user_id})
         response = self.client.delete(
             path=url,
@@ -156,7 +156,7 @@ class UserFolloweTest(APITestCase):
     # 본인 팔로우 불가
     def test_follow_self(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 1
+        user_id = self.user.id
         url = reverse("follow_view", kwargs={"user_id": user_id})
         response = self.client.post(
             path=url,
@@ -170,7 +170,7 @@ class UserFolloweTest(APITestCase):
     def test_follow_self(self):
         # 팔로우 확인
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
-        user_id = 2
+        user_id = self.user2.id
         url = reverse("follow_view", kwargs={"user_id": user_id})
         response = self.client.post(
             path=url,
