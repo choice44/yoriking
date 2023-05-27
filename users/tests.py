@@ -7,9 +7,9 @@ from django.urls import reverse
 # 마이페이지 출력 테스트
 class MyPageTest(APITestCase):
     @classmethod
-    def setUpTestData(self):
-        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
+    def setUpTestData(cls):
+        cls.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        cls.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
 
     def setUp(self):
         self.access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
@@ -27,16 +27,16 @@ class MyPageTest(APITestCase):
 # 유저페이지 출력 테스트
 class UserPageTest(APITestCase):
     @classmethod
-    def setUpTestData(self):
+    def setUpTestData(cls):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")      
+        cls.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        cls.user = User.objects.create_user("aaa@aaa.com", "Test1847!")      
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
-        self.user2.set_password("password")        
-        self.user2.save()
+        cls.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        cls.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
+        cls.user2.set_password("password")        
+        cls.user2.save()
 
     def setUp(self):
         self.access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
@@ -71,16 +71,16 @@ class UserPageTest(APITestCase):
 # 유저 페이지 수정 테스트
 class UserPageEditTest(APITestCase):
     @classmethod
-    def setUpTestData(self):
+    def setUpTestData(cls):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
+        cls.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        cls.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
-        self.user2.set_password("password")
-        self.user2.save()
+        cls.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        cls.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
+        cls.user2.set_password("password")
+        cls.user2.save()
         
     def setUp(self):
         self.access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
@@ -146,16 +146,16 @@ class UserPageEditTest(APITestCase):
 
 class UserFolloweTest(APITestCase):
     @classmethod   
-    def setUpTestData(self):
+    def setUpTestData(cls):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
+        cls.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        cls.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
-        self.user2.set_password("password")        
-        self.user2.save()
+        cls.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        cls.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
+        cls.user2.set_password("password")        
+        cls.user2.save()
 
     def setUp(self):
         self.access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
@@ -173,7 +173,7 @@ class UserFolloweTest(APITestCase):
 
 
     # 타인 팔로우 확인
-    def test_follow_self(self):
+    def test_follow_other(self):
         # 팔로우 확인
         user_id = self.user2.id
         url = reverse("follow_view", kwargs={"user_id": user_id})
