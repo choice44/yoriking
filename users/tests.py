@@ -7,8 +7,8 @@ from django.urls import reverse
 # 마이페이지 출력 테스트
 class MyPageTest(APITestCase):
     def setUp(self):
-        self.user_data = {"email": "aaa@aaa.com", "password": "AESaaa112!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "AESaaa112!")
+        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
         
     def test_get_user_data(self):
         access_token = self.client.post(reverse('token_obtain_pair'), self.user_data).data['access']
@@ -25,12 +25,12 @@ class MyPageTest(APITestCase):
 class UserPageTest(APITestCase):
     def setUp(self):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "AESaaa112!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "AESaaa112!")      
+        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")      
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "AESbbb!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="AESbbb!", nickname="bbb")
+        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
         self.user2.set_password("password")        
         self.user2.save()
 
@@ -67,12 +67,12 @@ class UserPageTest(APITestCase):
 class UserPageEditTest(APITestCase):
     def setUp(self):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "AESaaa112!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "AESaaa112!")
+        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "AESbbb!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="AESbbb!", nickname="bbb")
+        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
         self.user2.set_password("password")
         self.user2.save()
 
@@ -143,12 +143,12 @@ class UserPageEditTest(APITestCase):
 class UserFolloweTest(APITestCase):
     def setUp(self):
         # 유저 1 생성
-        self.user_data = {"email": "aaa@aaa.com", "password": "AESaaa112!"}
-        self.user = User.objects.create_user("aaa@aaa.com", "AESaaa112!")
+        self.user_data = {"email": "aaa@aaa.com", "password": "Test1847!"}
+        self.user = User.objects.create_user("aaa@aaa.com", "Test1847!")
 
         # 유저 2 생성
-        self.user_data2 = {"email": "bbb@bbb.com", "password": "AESbbb!"}
-        self.user2 = User.objects.create(email="bbb@bbb.com", password="AESbbb!", nickname="bbb")
+        self.user_data2 = {"email": "bbb@bbb.com", "password": "Test1847!"}
+        self.user2 = User.objects.create(email="bbb@bbb.com", password="Test1847!", nickname="bbb")
         self.user2.set_password("password")        
         self.user2.save()
 
