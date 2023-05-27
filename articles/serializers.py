@@ -15,7 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
         exclude = ('article',)
 
 
-# 게시글 전체 목록 조회 및 게시글 작성/수정
+# 게시글 전체 목록 조회 및 게시글 작성
 class ArticleSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
@@ -34,6 +34,14 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = "__all__"
 
+
+# 게시글 수정
+class ArticleUpdateSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Article
+        fields = ("title", "content", "image", "category")
+        
 
 # 게시글 상세보기
 class ArticleDetailSerializer(serializers.ModelSerializer):
