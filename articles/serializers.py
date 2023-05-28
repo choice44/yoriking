@@ -6,6 +6,14 @@ from .models import Article, Comment
 # 댓글 조회
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
+    
+    def get_created_at(self, obj):
+        return obj.created_at.strftime("%Y-%m-%d %H:%M")
+    
+    def get_updated_at(self, obj):
+        return obj.updated_at.strftime("%Y-%m-%d %H:%M")
 
     def get_user(self, obj):
         return {'nickname': obj.user.nickname, 'pk': obj.user.pk}
@@ -49,6 +57,8 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True)
     comment_count = serializers.SerializerMethodField()
     like_count = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
     
     def get_user(self, obj):
         return {'nickname': obj.user.nickname, 'pk': obj.user.pk}
@@ -59,6 +69,12 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     def get_like_count(self, obj):
         return obj.likes.count()
     
+    def get_created_at(self, obj):
+        return obj.created_at.strftime("%Y-%m-%d %H:%M")
+    
+    def get_updated_at(self, obj):
+        return obj.updated_at.strftime("%Y-%m-%d %H:%M")
+    
     class Meta:
         model = Article
         fields = "__all__"
@@ -66,6 +82,11 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
 
 # 댓글 작성/수정
 class CommentCreateSerializer(serializers.ModelSerializer):
+    created_at = serializers.SerializerMethodField()
+    
+    def get_created_at(self, obj):
+        return obj.created_at.strftime("%Y-%m-%d %H:%M")
+    
     class Meta:
         model = Comment
-        fields = ("content",)
+        fields = ("content", "created_at")

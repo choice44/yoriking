@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['3.38.211.113', 'api.bechol.com', '127.0.0.1',]
+ALLOWED_HOSTS = ['api.bechol.com', '127.0.0.1',]
 
 
 
@@ -94,7 +94,7 @@ TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 
