@@ -42,7 +42,7 @@ class ArticleView(APIView):
 
     def post(self, request):
         serializer = ArticleSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid():
             serializer.save(user=request.user)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
